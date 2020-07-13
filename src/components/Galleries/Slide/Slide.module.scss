@@ -1,0 +1,23 @@
+.slide{
+    width: 100%;
+}
+
+.secondary{
+    @extend .slide;
+    margin-bottom: 30px;
+}
+@media (min-width:900px){
+    .secondary{
+        margin-bottom:0;
+    }
+     .secondary:last-of-type{
+        
+    }
+    .slideImageWrapper{
+        padding-right: 36px;
+        flex: 0 0 auto;
+    }
+    .slideImageWrapper:last-of-type{
+        padding-right:0;
+    }
+}

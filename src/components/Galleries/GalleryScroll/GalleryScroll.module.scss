@@ -1,0 +1,76 @@
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+    // For Google Chrome
+    scrollbar-color: $foreground-color $background-color; /* thumb and track color */
+    scrollbar-width: $size;
+
+    &::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: $background-color;
+    }
+  
+    // For Internet Explorer
+    & {
+      scrollbar-face-color: $foreground-color;
+      scrollbar-track-color: $background-color;
+    }
+  }
+
+
+.info{
+    text-align: right;
+    cursor: pointer;
+}
+.infoContent{
+    text-align: center;
+    width: calc(100% - 6px)
+    }
+
+@media (min-width:900px){
+   .wrapper{
+    position: absolute;
+    left:33%;
+       
+   }
+
+    .galleryScroll{
+
+        overflow-x: auto;
+        display: inline-flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        margin-bottom:10px;      
+        @include scrollbars(10px, #000, #e2e2e2);  
+    }
+ 
+
+    .info:focus{
+        outline:none;
+}
+    .info{
+        text-align: left;
+        position: sticky;
+        padding:0;
+        margin-left:3px;
+        left:3px;
+        border:none;
+        background-color: #FFF;
+        font-size:1em;
+    }
+    .infoContent{
+        text-align: left;
+        position: sticky;
+        width: calc(60%);
+        margin-left:3px;
+        left:3px;
+        }
+
+
+}

@@ -1,0 +1,23 @@
+.container{
+    display: grid;
+    grid-template-columns:  1fr 3fr;
+}
+.text{
+    margin-left:20px;
+}
+.download{
+    position: absolute;
+    right:36px;
+}
+.wrapper{
+    h3{
+        font-size: 1em;
+        margin:0;
+        max-width: 25%;
+    }
+}
+@media (max-width:899px){
+    .download{
+        bottom:0;
+    }
+}

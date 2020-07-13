@@ -1,0 +1,25 @@
+.navItems{
+    margin-top:100px;
+    padding:0
+}
+.navItem{
+    list-style: none;
+    
+    &Link{
+        transition: font-weight .1s ease-in-out;
+        &Active{
+            font-weight: bold;
+        }
+    }
+}
+.navItem:nth-last-child(3){
+    margin-top:30px;
+}
+.socialIcons>img{
+    margin-right:5px;
+}
+@media (min-width:900px){
+    .navItems{
+        margin-top:0px;
+    }
+}

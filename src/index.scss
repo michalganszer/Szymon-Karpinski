@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+$margin:36px;
+
+
+html{
+  overflow-y: scroll; 
+  position: relative;
+  overflow-x: hidden;
+}
+body {
+  margin: $margin;
+  padding-bottom:50px;
+  font-family: 'Montserrat', sans-serif;
+  max-width:1440px;
+  min-height: calc(100vh - (2 * #{$margin}));
+  overflow-x: hidden;
+}
+
+a{
+  text-decoration: none;
+}
+a:link, a:visited, a:hover, a:active  {
+  color:#000;
+}
+h1{
+  font-weight:normal;
+}
+@media (min-width:900px){
+  body{
+    margin:0 auto;
+  }
+ 
+}
