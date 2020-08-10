@@ -1,13 +1,11 @@
 import React from 'react';
-import styles from './Madeira.module.scss';
-import GalleryClick from '../../../components/Galleries/GalleryClick/GalleryClick';
-import {slides} from '../../../data/madeiraData'
+import {slides} from '../../../data/madeiraData';
+import Slider from '../../../components/Galleries/GalleryClick/GalleryClick'
 
 const Madeira = () =>(
-    <div>
-    <GalleryClick slides={slides}/>
-    </div>
-
+    
+    <Slider slides={slides}/>
+    
 );
 
 export default Madeira;
