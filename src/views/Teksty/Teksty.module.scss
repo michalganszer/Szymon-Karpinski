@@ -1,18 +1,19 @@
-.wrapper{
-    position: relative;
+
+.container{
+    display:grid;
+    grid-template-columns: 1fr 4fr;
 }
-.yearWrapper{
-    display:flex;
-}
-.yearWrapper:last-of-type{
-    margin-bottom:36px;
-}
+
 .year{
-    margin-right:10px;
+    margin:0;
+    margin-right:6px;
+    text-align: right;
+}
+.wpisWrapper{
+    margin-bottom:1em;
 }
 .cc{
-    position: absolute;
-    bottom:0;
-    left:0;
+    
     font-size: 13px;
+    
 }
