@@ -1,0 +1,71 @@
+.slideWrapper{
+        position: relative;
+}
+.slideNav{
+        margin-top:10px;
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+}
+.buttons{
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+}
+.imageCounter{
+        text-align: center;
+}
+
+.buttonNext>img:hover, .buttonPrev>img:hover{
+        opacity:1;
+        
+}
+.buttonNext>img, .buttonPrev>img{
+        transition: 0.15s ease;
+        opacity:0.6
+}
+.info:focus{
+        outline:none;
+    }
+    .info{
+        justify-self: end;
+        text-align: right;
+        cursor: pointer;
+        border:none;
+        background-color: #FFF;
+        font-size:1em;
+        margin-top:10px;
+    }
+.buttonWrapper{
+        text-align: right;
+        padding-right:36px;
+}
+@mixin button {
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%); 
+        cursor: pointer;
+}
+.buttonNext{
+        @include button;
+        right:36px;
+}
+.buttonPrev{
+        @include button;
+        left:36px;
+}
+
+
+@media (min-width:900px){
+        .slideWrapper{
+                height: calc(100vh - 150px);
+                width: calc((100vh - 150px) + ((100vh - 150px)/2));
+        }
+}
+@media (min-width:1300px){
+        .slideWrapper{
+                height: calc(100vh - 150px - 108px);
+                width: calc((100vh - 150px - 108px) + ((100vh - 150px - 108px)/2));
+                max-height: 600px;
+                max-width: 900px;
+        }
+}
+
