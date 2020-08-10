@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './Slide.module.scss'
 
-const Slide = ({ image, secondary }) =>{
-    const buttonClass = secondary ? styles.secondary : styles.slide;
-    
+const Slide = ({ image }) =>{
+   
     return(
     <div className={styles.slideImageWrapper}>
-        <img className={buttonClass} src={image}></img>
+        <img className={styles.slide} src={image}></img>
     </div>
     )}
 
