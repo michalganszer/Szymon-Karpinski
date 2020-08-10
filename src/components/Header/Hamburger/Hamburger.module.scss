@@ -1,13 +1,18 @@
 .hamburger {
     padding: 10px;
+    padding-right:0;
     display: inline-block;
     cursor: pointer;
     background-color: transparent;
     border: 0;
     margin: 0;
+    margin-top: 5px;
 }
+.hamburger:focus {
+  outline: -webkit-focus-ring-color none;
+  }
 .hamburgerBox {
-    width: 30px;
+    width: 25px;
     height: 25px;
     display: inline-block;
     position: relative;
@@ -38,11 +43,11 @@
 } 
 
 .hamburgerInner::before {
-  top: -8px;
+  top: -7px;
 }
 
 .hamburgerInner::after {
-  top: 8px;
+  top: 7px;
 }
 
 .hamburgerActive{
@@ -55,11 +60,11 @@
 }
 
 .hamburgerActive .hamburgerInner:before {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 
 .hamburgerActive .hamburgerInner:after {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 
