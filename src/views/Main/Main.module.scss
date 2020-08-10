@@ -1,3 +1,6 @@
+.main{
+    position:relative;
+}
 .mainImage{
     display: block;
     margin:0 auto;
@@ -10,15 +13,24 @@
     text-align: right;
     font-size:0.7em;
     position: absolute;
-    bottom:0;
+    bottom:-36px;
     right:0;
+    margin:0;
 }
 @media (min-width:900px){
     .mainImage{
-        width:66.6%;
         margin:0;
+        height: calc(100vh - 150px);
+        width: auto;
+        margin-left: 33.3%;
+        transform: translateX(-50%);
     }
     .by{
         right:10px;
+    }
+}
+@media (min-width:1300px){
+    .mainImage{
+        height: calc(100vh - 250px);
     }
 }
