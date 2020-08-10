@@ -1,0 +1,14 @@
+$height900: calc(100vh - 150px);
+$width900:calc((100vh - 150px) + ((100vh - 150px)/2));
+$height1300:calc(100vh - 150px - 108px);
+$width1300:calc((100vh - 150px - 108px) + ((100vh - 150px - 108px)/2));
+
+@keyframes slideDown {
+    from {transform:translateY(-100%); opacity: 0;}
+    to {transform:translateY(0); opacity: 1}
+}
+
+@keyframes slideUp {
+    from {transform:translateY(0); opacity: 1;}
+    to {transform:translateY(-100%); opacity: 0;}
+}
