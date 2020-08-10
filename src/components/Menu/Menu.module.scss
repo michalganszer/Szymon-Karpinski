@@ -1,9 +1,11 @@
 .navItems{
     margin-top:100px;
-    padding:0
+    padding:0;
+    line-height:1.25em;
 }
 .navItem{
     list-style: none;
+    margin:0;
     
     &Link{
         transition: font-weight .1s ease-in-out;
@@ -12,11 +14,26 @@
         }
     }
 }
+.socialIcons{
+margin-top:30px;
+}
+.language{
+    margin-top:90px;
+    button{
+        background-color: transparent;
+        border:none;
+        padding:0;
+        cursor: pointer;
+    }
+    span{
+        padding:4px;
+    }
+}
 .navItem:nth-last-child(3){
     margin-top:30px;
 }
 .socialIcons>img{
-    margin-right:5px;
+    margin-right:8px;
 }
 @media (min-width:900px){
     .navItems{
