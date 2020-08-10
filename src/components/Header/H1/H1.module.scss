@@ -1,6 +1,10 @@
 .name{
-    font-size:1.3em;
+    font-size:1.4em;
     font-weight:400;
-    width:92%;
-    margin:1em auto;
+    width:100%;  
+}
+@media (min-width:900px){
+    .name{
+    margin:0 auto 30px auto;
+    }
 }
