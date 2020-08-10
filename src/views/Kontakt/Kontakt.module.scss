@@ -1,3 +1,9 @@
 .kontakt>p{
-    margin-top:2em
+    margin-top:2em;
+}
+
+@media (min-width:900px){
+    .kontakt{
+        margin-left:5%;
+    }
 }
