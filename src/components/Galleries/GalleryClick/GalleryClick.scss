@@ -1,0 +1,110 @@
+@import "react-alice-carousel/lib/scss/alice-carousel.scss";
+@import './../AnimationHeightWidth.scss';
+
+
+.alice-carousel, .alice-carousel__wrapper{
+    overflow: hidden;
+}
+.alice-carousel__{
+    &prev-btn-custom:focus, &next-btn-custom:focus{
+        outline:none;
+        outline: -webkit-focus-ring-color none;
+    }
+
+    &prev-btn-custom:hover, &next-btn-custom:hover{
+    opacity:1;
+    }
+    @mixin buttons {
+        width: unset;
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        background-color:transparent;
+        border:none;
+        cursor: pointer;
+        opacity:1;
+    }
+    &prev-btn-custom{
+        @include buttons;
+        left:10px
+    }
+    &next-btn-custom{
+        @include buttons;
+        right:10px
+    }
+    &stage-item{
+        text-align: center;
+        vertical-align: middle;
+    }
+    &slide{
+        object-fit: contain;
+        object-position: 50% 50%;
+        max-width: 100%;
+        
+    }
+    &buttonWrapper{
+        text-align: right;
+        padding-right:10px;
+    }
+    &info:focus{
+        outline:none;
+    }
+    &info{
+        justify-self: end;
+        text-align: right;
+        cursor: pointer;
+        border:none;
+        background-color: #FFF;
+        font-size:1em;
+        margin-top:10px;
+    }
+}
+.alice-carousel-custom-wrapper{
+    position: relative;
+}
+@media(max-width:899px){
+    .alice-carousel__prev-btn-custom>img, .alice-carousel__next-btn-custom>img{
+        width:20px;
+    }
+}
+@media (min-width:900px){
+    .alice-carousel, .alice-carousel__wrapper, .alice-carousel-custom-wrapper{
+            height: $height900;
+            width:$width900;
+    }
+    .alice-carousel__{
+        &slide{
+            
+            height: 100%;
+            margin:0 auto;
+        }
+        &stage-item{
+            vertical-align: middle;
+        }
+    
+        &buttonWrapper{
+            width: $width900;
+            padding-right: 36px;
+        }
+         &prev-btn-custom{
+            left:36px;
+            opacity:0.5;
+        }
+        &next-btn-custom{
+            right:36px;
+            opacity:0.5;
+        }
+    }
+}
+@media (min-width:1300px){
+    .alice-carousel, .alice-carousel__wrapper, .alice-carousel-custom-wrapper{
+            height: $height1300;
+            width: $width1300;
+            max-height: 600px;
+            max-width: 900px;
+    }
+    .alice-carousel__buttonWrapper{
+        width: $width1300;
+        max-width:900px;
+    }
+}
