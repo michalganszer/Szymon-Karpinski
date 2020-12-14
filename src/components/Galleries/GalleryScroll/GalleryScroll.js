@@ -1,58 +1,31 @@
 import React from 'react';
 import styles from './GalleryScroll.module.scss'
 import Slide from '../Slide/Slide';
+import {Helmet} from "react-helmet";
 
 
-class GalleryScroll extends React.Component{
-    state = {
-        slides: this.props.slides,
-        showInfo: false,
-        showInfoAnimate:false
-    }
-
-    animateInfo = () =>{
-        this.setState(prevState => ({
-          showInfoAnimate: !prevState.showInfoAnimate}))
+const GalleryScroll = ({slides}) =>{
         
-      }
-    
-      showInfoHandler = () =>{
-            
-        this.animateInfo()
-        
-    
-        this.state.showInfo  ?
-        
-        (setTimeout(() =>{
-        this.setState(prevState => ({
-            showInfo: !prevState.showInfo
-          }))}, 700)
-          
-    
-          ) : (
-    
-            this.setState(prevState => ({
-            showInfo: !prevState.showInfo})));
-            setTimeout(() =>{
-            window.scrollTo({top:document.body.scrollHeight,behavior: 'smooth' });}, 100)        
-        }
-
-render(){
 return(
 <div className={styles.wrapper}>
-    <div className={styles.galleryScroll}>
-        {this.state.slides.map((slide, i) =>(
+    <Helmet>
+        <title>{slides.name}</title>
+    </Helmet>
 
-            <Slide key={i} image={slide.image} /> 
+    <div className={styles.galleryScroll}>
+        {slides.map((slide, i) =>(
+            slide.photo ? (<Slide key={i} image={slide.photo.url} />
+               
+                ) : (
+                <p className={styles.description}>{slide.descriptionPl.raw.children[0].children.map((x, j) => (x.italic && x.bold ? <i key={j}><b>{x.text}</b></i> : (x.bold ? <b key={j}>{x.text}</b> : (x.italic ? <i key={j}>{x.text}</i> : x.text.replace(/ ([a-zA-Z]) /g, ' $1' + '\u00A0')))))}</p>
+                )
+            
             
             ))}
         
     </div>
-    
-    <button onClick={this.showInfoHandler} className={styles.info}>INFO</button>
-    {this.state.showInfo && <p className={this.state.showInfoAnimate ? styles.infoContentFadeIn : styles.infoContentFadeOut}>{this.state.slides[0].info}</p>}
 </div>
     
- ) }}
+ ) }
 
 export default GalleryScroll

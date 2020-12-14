@@ -1,41 +1,86 @@
-import React from 'react';
-import styles from './Teksty.module.scss'
-import TekstyWpis from '../../components/TekstWpis/TekstWpis'
+import React, { useEffect, useState} from 'react';
+import { request } from 'graphql-request';
+import styles from './Teksty.module.scss';
+import pdfImg from '../../assets/images/icons/pdf.svg';
+import linkImg from '../../assets/images/icons/link.svg';
+import {Helmet} from "react-helmet";
+import { LanguageContext } from '../../contexts/LanguageContext';
 
-const Teksty = () =>(
-    <div className={styles.wrapper}>
-    <section className={styles.container}>
-        <p className={styles.year}>2016:</p>
-        <div className={styles.wpisWrapper}>
-            <TekstyWpis link={""} pdf={"1"}><i>W kosmos aparatu,</i> Magazyn OBIEKTYW #1, Katowice </TekstyWpis>
-            <TekstyWpis link={""} pdf={"1"}><i>Rozważania po czasie – 14. Edycja Miesiąca Fotografii w Krakowie,</i>Pracownia Kultury, Katowice</TekstyWpis>
-        </div>
-    </section>
+const Teksty = () =>{
 
-    <section className={styles.container}>
-        <p className={styles.year}>2018:</p>
-        <div className={styles.wpisWrapper}>
-            <TekstyWpis link={"1"} pdf={""}>Recenzja wystawy. “Joanna Helander. Archiwum Otwarte” , Reflektor. Rozświetlamy kulturę!, Katowice</TekstyWpis>
-        </div>
-    </section>
+    const [teksties, setProducts] = useState(null);
 
-    <section className={styles.container}>
-        <p className={styles.year}>2019:</p>
-        <div className={styles.wpisWrapper}>
-            <TekstyWpis link={""} pdf={""}>Wydobywane z węgla. Wizualne reprezentacje prac górniczych, Katowice</TekstyWpis>
-            <TekstyWpis link={""} pdf={""}><i>Zielniki i banki nasion jako archiwa roślinności,</i> Katowice</TekstyWpis>
-        </div>
-    </section>
-
-
-
-
-<section className={styles.container}>
-    <span></span>
-    <p className={styles.cc}>Teksty udostępnione na licencji CC, 2020</p>
-</section>
+    useEffect(() => {
+        const fetchProducts = async () => {
+          const { teksties } = await request(
+            'https://api-eu-central-1.graphcms.com/v2/ckest21fh481r01z5a1lp8trn/master',
+            `
+            {
+              teksties {
+                wpisy {
+                  pdf {
+                    url
+                  }
+                  link
+                  rok
+                  wpis {
+                    raw
+                  }
+                  wpisEn {
+                    raw
+                  }
+                }
+              }
+            }
+        `
+          );
     
-</div>
-);
+          setProducts(teksties);
+        };
+    
+        fetchProducts();
+      }, []);
+
+      return(
+        <LanguageContext.Consumer>{(context)=>{
+          const {isPL} = context;
+          return(
+    <>
+    <Helmet>
+        <title>Teksty</title>
+    </Helmet>
+
+
+    {!teksties ? (
+        ''
+        ) : (
+        <div className={styles.wrapper}>
+          
+        {teksties[0].wpisy.map((tekst, i, array) => (
+                
+                //ODSTĘPY MIĘDZY RÓŻNYMI LATAMI<div className={array[i-1] ? ((array[i-1].rok == tekst.rok) ? styles.containerSecond : styles.container) : styles.container} key={i}>
+                <div className={styles.containerSecond}>
+                    {/*<p className={styles.year}>{array[i-1] ? ((array[i-1].rok == tekst.rok) ? <p></p> : tekst.rok) : tekst.rok}</p> {/*display certain year only once*/}
+                     <p className={styles.year}>{tekst.rok}</p>
+                   <div>
+                        {/* POTENCJALNY ENTER {tekst.wpis.raw.children.map((a,b) => <p key={b}>{a.children.map((x, j) => (x.italic && x.bold ? <i key={j}><b>{x.text}</b></i> : (x.bold ? <b key={j}>{x.text}</b> : (x.italic ? <i key={j}>{x.text}</i> : x.text))))}</p>)}*/}
+                        {isPL ? (tekst.wpis.raw.children[0].children.map((x, j) => (x.italic && x.bold ? <i key={j}><b>{x.text}</b></i> : (x.bold ? <b key={j}>{x.text}</b> : (x.italic ? <i key={j}>{x.text}</i> : x.text))))) : 
+                        (tekst.wpisEn && tekst.wpisEn.raw.children[0].children.map((x, j) => (x.italic && x.bold ? <i key={j}><b>{x.text}</b></i> : (x.bold ? <b key={j}>{x.text}</b> : (x.italic ? <i key={j}>{x.text}</i> : x.text)))))}
+                        {tekst.link && <a href={tekst.link} target='_blank'><img className={styles.img} alt='link icon' src={linkImg}></img></a>}
+                        {tekst.pdf && <a href={tekst.pdf.url} target='_blank' download><img className={styles.img} alt='pdf icon' src={pdfImg}></img></a>}
+                    </div>
+                </div>
+            ))}
+
+        </div>
+    )}
+
+   
+
+    <p className={styles.cc}>Teksty zostają udostępnione na licencji CC BY-NC-SA, {(new Date().getFullYear())}</p>
+    </>)
+        }}
+    </LanguageContext.Consumer>
+    )};
 
 export default Teksty;

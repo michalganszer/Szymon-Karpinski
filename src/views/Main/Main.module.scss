@@ -1,36 +1,75 @@
+@import'./../../components/Galleries/AnimationHeightWidth.scss';
 .main{
     position:relative;
 }
 .mainImage{
     display: block;
-    margin:0 auto;
+    margin:22px auto 0 auto;
     width:100%;
+    max-height: calc(100vh - 140px);
+    object-fit: contain;
+    object-position: 50% 50%;
 }
 .menu{
     display:none;
 }
 .by{
-    text-align: right;
+    box-sizing: border-box;
     font-size:0.7em;
     position: absolute;
-    bottom:-36px;
-    right:0;
+    bottom:16px;
+    right:16px;
     margin:0;
+    opacity: 0.9;
 }
-@media (min-width:900px){
+@media (max-width:899px) and (orientation:portrait){
+    .mainImage{
+        margin:0 auto;
+    }
+}
+@media (min-width:900px) and (orientation: landscape)  {
     .mainImage{
         margin:0;
-        height: calc(100vh - 150px);
+        height: $height1300;
         width: auto;
-        margin-left: 33.3%;
+        margin-left: calc((100vw - 72px) / 2 - 286px);
         transform: translateX(-50%);
     }
     .by{
-        right:10px;
+        bottom:36px;
+        right:36px;
     }
+    
 }
 @media (min-width:1300px){
     .mainImage{
-        height: calc(100vh - 250px);
+        height: $height1300;
+        
     }
 }
+
+
+.ripple {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    left: calc(50vw - 300px);
+    border-radius: 50%;
+    border: 0.3rem solid #636363;
+    transform: translate(50%);
+    animation-name: ripple;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+  }
+  
+  @keyframes ripple {
+    from {
+      transform: scale(0);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }

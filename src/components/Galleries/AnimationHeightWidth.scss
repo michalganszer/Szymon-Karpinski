@@ -1,7 +1,11 @@
 $height900: calc(100vh - 150px);
 $width900:calc((100vh - 150px) + ((100vh - 150px)/2));
-$height1300:calc(100vh - 150px - 108px);
-$width1300:calc((100vh - 150px - 108px) + ((100vh - 150px - 108px)/2));
+//$height1300:calc(100vh - 150px - 108px);
+//$width1300:calc((100vh - 150px - 108px) + ((100vh - 150px - 108px)/2));
+
+
+$width1300: calc((100vw - 72px)/2);
+$height1300: calc((2/3*((100vw - 72px)/2)));
 
 @keyframes slideDown {
     from {transform:translateY(-100%); opacity: 0;}

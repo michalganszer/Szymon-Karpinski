@@ -1,12 +1,16 @@
 import React from 'react';
 import styles from './Kontakt.module.scss';
 import { LanguageContext } from '../../contexts/LanguageContext';
+import {Helmet} from "react-helmet";
 
 const Kontakt = () =>(
 
     <LanguageContext.Consumer>{(context)=>{
         return(
             <>
+            <Helmet>
+                <title>Kontakt</title>
+            </Helmet>
             {context.isPL ? <PL/> : <EN/>}
             </>        
         )
@@ -21,7 +25,7 @@ const PL = () =>(
                
     <div>karpinski_szymon@wp.pl</div>
         <a href="tel:+48514942473"> (+48) 514-942-473</a>
-    <p>Szymon Karpiński ©  2020</p>
+    <p>©  {(new Date().getFullYear())} Szymon Karpiński </p>
  </div>
 )
 

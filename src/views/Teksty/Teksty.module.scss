@@ -1,19 +1,39 @@
-
+.wrapper{
+    max-width:900px;
+}
 .container{
     display:grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 34px 4fr;
+    margin-bottom:1em;
+}
+.containerSecond{
+    display:grid;
+    grid-template-columns: 34px 4fr;
+    margin-bottom:1em;
+    margin-top:-1em;
 }
 
 .year{
     margin:0;
-    margin-right:6px;
-    text-align: right;
 }
 .wpisWrapper{
     margin-bottom:1em;
 }
+.text{
+    margin:0;
+}
+.img{
+    margin-left:1px;
+    vertical-align: middle;
+    width:15px;
+}
 .cc{
-    
-    font-size: 13px;
+    box-sizing: border-box;
+    font-size:0.7em;
+    position: absolute;
+    bottom:36px;
+    right:36px;
+    margin:0;
+    opacity: 0.9;
     
 }

@@ -1,26 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Antic+Slab&family=Gentium+Book+Basic&family=Martel:wght@300;400&family=Merriweather:wght@300;400&family=Old+Standard+TT&family=PT+Sans&family=Sorts+Mill+Goudy&display=swap');
 
 $margin:36px;
 
 
 html{
-  overflow-y: overlay; 
+  
   position: relative;
 }
 body {
   margin: $margin;
-  font-family: 'Montserrat', sans-serif;
-  max-width:1440px;
+  //font-family: 'Montserrat', sans-serif;
+  //font-family: 'Asap', sans-serif;
+  //font-family: 'Assistant', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
+  //font-family: 'Nunito', sans-serif;
+  //font-family: 'Sarabun', sans-serif;
+  font-family: 'Alegreya';
+  font-family: 'Sorts Mill Goudy';
+  font-family: 'Gentium Book Basic';
+  font-family: 'Old Standard TT';
+  font-family: 'Mill Goudy';
+  
+  font-weight: 200;
   min-height: calc(100vh - (2 * #{$margin}));
   overflow-x: hidden;
   box-sizing: border-box;
-  font-size:15px;
+  font-size:13px;
   z-index: -1;
   margin:0px auto;
   min-height: 100vh;
-  line-height: 1.5em;
+  line-height: 1.3em;
 }
-
+button{
+  font-family: 'Mill Goudy';
+  font-weight:200;
+  font-size: 13px;
+}
 a{
   text-decoration: none;
 }
@@ -33,14 +51,14 @@ button:focus {
 h1{
   font-weight:normal;
 }
-@media (max-width:899px){
+@media (max-width:899px), (orientation: portrait) {
   body{
     padding-bottom:36px;
-    padding: $margin;
+    padding: 16px;
     min-height:100vh;
   }
 }
-@media (min-width:900px){
+@media (min-width:900px) and (orientation: landscape) {
   body{
     
     padding: 36px 36px 0;
@@ -49,7 +67,7 @@ h1{
  
 }
 
-@media(min-width:1300px){
+@media(min-width:1300px) and (orientation: landscape) {
   body{
     padding:calc(2 * #{$margin}) 36px $margin 36px;
     

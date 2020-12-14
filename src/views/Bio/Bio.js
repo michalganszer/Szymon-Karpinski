@@ -1,132 +1,90 @@
 
-import React from 'react';
+import React, { useEffect, useState} from 'react';
+import { request } from 'graphql-request';
 import styles from './Bio.module.scss';
-import PDF from '../../assets/images/icons/pdf.png'
+import PDF from '../../assets/images/icons/pdf.svg'
 import { LanguageContext } from '../../contexts/LanguageContext';
+import {Helmet} from "react-helmet";
+import RichText from '../../components/RichText/RichText';
 
-const Bio = () =>(
+const Bio = () =>{
+
+    const [bios, setProducts] = useState(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+          const { bios } = await request(
+            'https://api-eu-central-1.graphcms.com/v2/ckest21fh481r01z5a1lp8trn/master',
+            `
+            {
+                bios {
+                    wpisy {
+                        dzial
+                        dzialEn
+                        rok
+                        wpis {
+                            raw
+                        }
+                        wpisEn {
+                            raw
+                        }
+                    }
+                    bioDownload {
+                        url
+                    }
+                }
+            }
+        `
+          );
+    
+          setProducts(bios);
+        };
+    
+        fetchProducts();
+      }, []);
+
+      return(
     <LanguageContext.Consumer>{(context)=>{
         const {isPL} = context;
         return(
+        <>
+            <Helmet>
+                <title>Szymon Karpiński - Bio</title>
+            </Helmet>
         
-        <div className={styles.wrapper}>
-        
-        <div className={styles.download}>
-        {isPL ? 'Pobierz Bio' : 'Download Bio'} <img src={PDF}/>
-        </div>
-        
-        <section className={styles.sectionWrapper}>
-        <h3>{isPL ? 'Edukacja' : 'Education'}</h3>
-            <div className={styles.container}>
-                <p className={styles.year}>2019:</p>
-                <p className={styles.text}>Magisterium, kulturoznawstwo, Uniwersytet Śląski, Katowice</p>
-            </div>
-        </section>
-    
-        <section className={styles.sectionWrapper}>
-        <h3>{isPL ? 'Staże' : 'Internships'}</h3>
-            <div className={styles.container}>
-                <p className={styles.year}>2017:</p>
-                <p className={styles.text}>A, B, C – Architektura Bliżej Ciebie. Cyfrowe archiwum fotografii Zygmunta Kubskiego ze zbiorów Muzeum Miejskiego w Tychach, Dział Fotografii, Tychy</p>
-            </div>
-        </section>
-    
-        <section className={styles.sectionWrapper}>
-            <h3>Wystawy</h3>
-            <div className={styles.container}>
-                <p className={styles.year}>2014:</p>
-                <p className={styles.text}>Portugalska miłość, SKATE OR DIE, Kraków</p>
-            </div>
-            <div className={styles.container}>
-                <p className={styles.year}>2015:</p>
-                <p className={styles.text}>Foto open, 6. FotoArtFestival, Bielsko-Biał</p>
-            </div>
-            <div className={styles.container}>
-                <p className={styles.year}>ongoing:</p>
-                <p className={styles.text}>Nieuchronne straty i wartościowe zmiany, Bielsko-Biała</p>
-            </div>
-        </section>
-    
-        <section className={styles.sectionWrapper}>
-            <h3>Publikacje</h3>
-            <div className={styles.container}>
-                <p className={styles.year}>2019:</p>
-                <p className={styles.text}>Madeira, zine, Bielsko-Biała</p>
-            </div>
-            <div className={styles.container}>
-                <p className={styles.year}>ongoing:</p>
-                <p className={styles.text}>Nieuchronne straty i wartościowe zmiany, photobook, Bielsko-Biała</p>
-            </div>
-        </section>
-    
-        <section className={styles.sectionWrapper}>
-            <h3>Wystawy kuratorskie</h3>
-            <div className={styles.container}>
-                <p className={styles.year}>2017:</p>
-                <p className={styles.text}>Dom w Tbilisi, Uta Beyer, Klub Absurdalna, Katowice</p>
-            </div>
-            <div className={styles.container}>
-                <p className={styles.year}>2018:</p>
-                <p className={styles.text}>Wystawa zdjęć Murckowiaków, Fundacja Kultura Obrazu, KatowiceMniej więcej. Fotografie z archiwum Marka Piaseckiego, Fundacja Archeologia  Fotografii, Towarzystwo Inicjatyw Twórczych “ę”, Warszawa</p>
-            </div>
-        </section>
-    
-        <section className={styles.sectionWrapper}>
-            <h3>Wykłady i warsztaty</h3>
-            <div className={styles.container}>
-                <p className={styles.year}>2016:</p>
-                <p className={styles.text}>Domowe archiwa – wokół rodzinnego albumu, Galeria Bielska BWA, Bielsko-Biała</p>
-            </div>
-        </section>
-    
-        <section className={styles.sectionWrapper}>
-            <h3>Projekty badawcze</h3>
-            <div className={styles.container}>
-                <p className={styles.year}>2015:</p>
-                <p className={styles.text}>Pamięć przeszłości – przyszłość pamięci, Berlin</p>
-            </div>
-            <div className={styles.container}>
-                <p className={styles.year}>2016:</p>
-                <p className={styles.text}>Pamięć przeszłości – przyszłość pamięci, Berlin</p>
-            </div>
-            <div className={styles.container}>
-                <p className={styles.year}>2019:</p>
-                <p className={styles.text}>Domowe ogrodnictwo jako zespół praktyk kulturowych, woj. śląskie</p>
-            </div>
-        </section>
-    
-        <section className={styles.sectionWrapper}>
-            <h3>Projekty graficzne</h3>
-            <div className={styles.container}>
-                <p className={styles.year}>2016/<span className={styles.enter}><br/></span>2017:</p>
-                <p className={styles.text}>Przegląd Filmów Etnograficznych “Oczy i Obiektywy”, Katowice Laboratorium Obrazu, Katowice</p>
-            </div>
-            <div className={styles.container}>
-                <p className={styles.year}>2017:</p>
-                <p className={styles.text}>Dom w Tbilisi, Uta Beyer, Katowice </p>
-            </div>
-            <div className={styles.container}>
-                <p className={styles.year}>2019:</p>
-                <p className={styles.text}>Raje i ruiny. Turystyka na końcach światów, Katowice</p>
-            </div>
-        </section>
-    
-        <section className={styles.sectionWrapper}>
-            <h3>Certyfikaty</h3>
-            <div className={styles.container}>
-                <p className={styles.year}>2020:</p>
-                <p className={styles.text}>Archiwista społeczny, Fundacja Ośrodka KARTA, Warszawa Digitalizera materiałów archiwalnych, Fundacja Ośrodka KARTA, Warszawa</p>
-            </div>
-        </section>
-    
-        
-    
-    </div>       
+            
+           
+            {!bios ? (
+                ''
+                ) : (
+                <>
+                <div className={styles.download}>
+                    {isPL ? 'Pobierz bio' : 'Download bio'} <a target='_blank' href={bios[0].bioDownload.url}><img src={PDF}/></a>
+                </div> 
+
+                <div className={styles.wrapper}>
+                    {bios[0].wpisy.map((wpis, i, array) => 
+                    <>
+                    <p className={array[i-1] ? ((array[i-1].dzial === wpis.dzial) ? styles.dzialSecond : styles.dzial) : styles.dzial}>{array[i-1] ? ((array[i-1].dzial === wpis.dzial) ? <p></p> : (isPL ? wpis.dzial : wpis.dzialEn)) : (isPL ? wpis.dzial : wpis.dzialEn)}</p> {/*display certain title only once*/}  
+                        <div className={styles.container} key={i}>
+                            <p className={styles.year}>{wpis.rok}</p>{/*{array[i-1] ? (((array[i-1].rok === wpis.rok) && (array[i-1].dzial === wpis.dzial)) ? <p></p> : wpis.rok) : wpis.rok}</p> display certain year only once*/}
+                            
+                             <p>{isPL ? <RichText iteraction={wpis.wpis}/> : <RichText iteraction={wpis.wpisEn}/>}</p>
+                        </div>
+                    </>
+                    )}
+                </div> 
+                </>
+
+            )}
+
+           
+        </>    
         )
     }}
  
     
 </LanguageContext.Consumer>
-);
+)};
 
 export default Bio;

@@ -5,7 +5,7 @@ const Slide = ({ image }) =>{
    
     return(
     <div className={styles.slideImageWrapper}>
-        <img className={styles.slide} src={image}></img>
+        <img className={styles.slide} alt={image.alt} src={image}></img>
     </div>
     )}
 

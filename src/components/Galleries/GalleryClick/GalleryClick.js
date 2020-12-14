@@ -1,106 +1,123 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import prev from './../../../assets/images/icons/prev.png';
 import next from './../../../assets/images/icons/next.png';
 import './GalleryClick.scss';
-import Info from '../Info/Info'
+import Info from '../Info/Info';
+import {Helmet} from "react-helmet";
+import { LanguageContext } from '../../../contexts/LanguageContext';
+import RichText from '../../RichText/RichText';
 
 
 
-class Slider extends React.Component {
-  state = {
-    slides: this.props.slides,
-    showInfo:false,
-    showInfoAnimate:3,
-    currentIndex: 0,
+
+
+
+const Slider = ({photos}) => {
+
+  const [index, setIndex] = useState(0);
+  //const [slides, setSlides] = useState([photos.description, ...photos.photo])//merge photos and description
+
+ // const slideTo = (i) => this.setState({ currentIndex: i })
+
+  const onSlideChanged = (e) => {
+   // document.body.style.overflowY='auto'
+   
+  return (setIndex(e.item))
   }
 
-  slideTo = (i) => this.setState({ currentIndex: i })
-
-  onSlideChanged = (e) => this.setState({ currentIndex: e.item })
-
-  slideNext = () => this.setState({ currentIndex: this.state.currentIndex + 1 })
-
-  slidePrev = () => this.setState({ currentIndex: this.state.currentIndex - 1 })
-
-  thumbItem = (item, i) => <span onClick={() => this.slideTo(i)}>* </span>
-
-  
-  
-  animateInfo = () =>{
-    //this.setState(prevState => ({
-    //  showInfoAnimate: !prevState.showInfoAnimate}))
-    if (this.state.showInfoAnimate === 3){
-      this.setState({
-        showInfoAnimate: 1
-      })
-      setTimeout(()=>{this.setState({
-        showInfoAnimate: 2
-      })},700)
-    }
-    else {
-      this.setState({
-        showInfoAnimate: 3
-      })
-    }
-  }
-
-  showInfoHandler = () =>{
-        
-    this.animateInfo()
-
-    this.state.showInfo  ?
+  const onSlideChange = (e) => {
     
-    (setTimeout(() =>{
-    this.setState(prevState => ({
-        showInfo: !prevState.showInfo
-      }))}, 700)
-      
+   // document.body.style.overflowY='hidden'
+  }
 
-      ) : (
+  const slideNext = () => setIndex(index + 1)
 
-        this.setState(prevState => ({
-        showInfo: !prevState.showInfo})));
-        setTimeout(() =>{
-        window.scrollTo({top:document.body.scrollHeight,behavior: 'smooth' });}, 100)        
-    }
+  const slidePrev = () => setIndex(index - 1)
 
+  let xPos = 0;
+  let yPos = 0;
+  let moveVert = false;
+  
+  const offOverflow = (e) => {
+     if(xPos === 0) xPos = e.targetTouches[0].screenX;
+     if (yPos === 0) yPos = e.targetTouches[0].screenY;
+   //moveVert === false ? ((Math.abs(xPos - e.targetTouches[0].screenX) > (Math.abs(yPos - e.targetTouches[0].screenY))) ? moveVert=true : moveVert=false) : moveVert=null;
+   // console.log('y: ' + Math.abs(yPos - e.targetTouches[0].screenY) + 'x: ' + Math.abs(xPos - e.targetTouches[0].screenX));
+    ((Math.abs(xPos - e.targetTouches[0].screenX) > (Math.abs(yPos - e.targetTouches[0].screenY))) ? document.body.style.overflowY='hidden': moveVert=false);
+    yPos = e.targetTouches[0].screenY
+    xPos = e.targetTouches[0].screenX
+    //console.log(moveVert)
+    return(
+      moveVert
+    )
 
-  render() {
-    const {currentIndex } = this.state
+  }
+  const onOverflow = () =>{
+    document.body.style.overflowY='auto'
+  }
+
     return (
-      <div>
-      <div className="alice-carousel-custom-wrapper">
-        <AliceCarousel
+      <LanguageContext.Consumer>{(context)=>{
+        const {isPL} = context;
+      
+        return(
+      <>
+      
+          <Helmet>
+          {console.log(context.isPL)}
+            <title>{photos.name}</title>
+          </Helmet>
+        <div onTouchMove={offOverflow} onTouchEnd={onOverflow} className="alice-carousel-custom-wrapper">
+
+         {isPL && <AliceCarousel
+            dotsDisabled={true}
+            buttonsDisabled={true}
+            slideToIndex={index}
+            onSlideChange = {onSlideChange}
+            onSlideChanged={onSlideChanged}          
+            
+            
+          >
+            
+            {photos.map((slide, i) =>(
+            (slide.photo && isPL) ? (<img key={i} src={slide.photo.url} alt={slide.alt} className="alice-carousel__slide" />
+            ) : (
+              
+            <div className="alice-carousel__text"><RichText iteraction = {slide.descriptionPl}/></div>)
+            
+            ))}
+            
+          </AliceCarousel>}
+         
+        {!isPL && <AliceCarousel
           dotsDisabled={true}
           buttonsDisabled={true}
-          slideToIndex={currentIndex}
-          onSlideChanged={this.onSlideChanged}
+          slideToIndex={index}
+          onSlideChanged={onSlideChanged}
+         
         >
-
-        {this.state.slides.map((slide, i) =>(
-
-        <img key={i} src={slide.image} className="alice-carousel__slide" />  
-
-        ))}
-        </AliceCarousel>
-
-
-        <button className="alice-carousel__prev-btn-custom" onClick={() => this.slidePrev()}><img src={prev}/></button>
-        <button className="alice-carousel__next-btn-custom" onClick={() => this.slideNext()}><img src={next}/></button>
-      
-
+          {photos.map((slide, i) =>(
+          (slide.photo && !isPL) ? (<img key={i} src={slide.photo.url} alt={slide.alt} className="alice-carousel__slide" />
+          ) : (
+          <p className="alice-carousel__text"><RichText iteraction = {slide.descriptionEn}/></p>)
         
-      </div>
-      <div className="alice-carousel__buttonWrapper">
-            <button onClick={this.showInfoHandler} className="alice-carousel__info">INFO</button>
-        </div>
+          ))}
+          
+        </AliceCarousel>}
+          
+          
 
-        {this.state.slides.map((slide, i) =>(
-          this.state.showInfo && (i === this.state.currentIndex) && <Info key={i}  animate={this.state.showInfoAnimate} info={slide.info}/>))}
-      </div>
+          <button className="alice-carousel__prev-btn-custom" onClick={() => slidePrev()}><img alt='' src={prev}/></button>
+          <button className="alice-carousel__next-btn-custom" onClick={() => slideNext()}><img alt='' src={next}/></button>
+              
+        </div>
+      </>
+        )
+      }}
+    </LanguageContext.Consumer>
+    
     )
-  }
 }
 
 export default Slider

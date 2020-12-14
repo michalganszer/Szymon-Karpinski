@@ -1,29 +1,27 @@
-@media (min-width:900px){
+@media (min-width:900px) and (orientation: landscape) {
     .wrapper{
         margin:0 auto;
     }
     .aside{
-        width:calc(25% + 10px);
+       // width:calc(25% + 10px);
         position:fixed;
-        height:90%;
+        height:80%;
         z-index: 2;
         background-color: #FFF;
     }
     .cover{
         position: fixed;
-        width: 25%;
-        height: 90%;
+        width: 286px;
+        height: 80%;
         background-color: #FFF;
         left: 0;
         z-index: 1;
     }
     .main{
-        margin-left:25%;
-        padding-top:60px;
+        margin-left:286px;
+        padding-top:71.3px;
     }
 }
-@media(min-width:1440px){
-    .aside{
-        width:calc(0.25 * 1440px + 10px);
-    }
-}
+
+
+
