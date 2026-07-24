@@ -1,5 +1,5 @@
 import React from 'react';
-import MediaQuery, { useMediaQuery }  from 'react-responsive';
+import { useMediaQuery }  from 'react-responsive';
 import styles from './Header.module.scss'
 import Hamburger from './Hamburger/Hamburger';
 import H1 from './H1/H1';

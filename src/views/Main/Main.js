@@ -38,7 +38,7 @@ const Main = () =>{
     </Helmet>
     <div className={styles.main}>
         {!stronaGlownas ? <div className={styles.ripple}></div> :
-        <img alt='main image representing a rock' className={styles.mainImage} src={stronaGlownas[0].zdjecieGlowne.url}/>
+        <img alt='Rock' className={styles.mainImage} src={stronaGlownas[0].zdjecieGlowne.url}/>
         }
     </div>
 

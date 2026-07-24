@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import { request } from 'graphql-request';
 import styles from './App.module.scss';
 import { BrowserRouter, Route } from 'react-router-dom';
-import MediaQuery, { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from 'react-responsive';
 import Menu from '../../components/Menu/Menu';
 import Teksty from '../Teksty/Teksty';
 import Bio from '../Bio/Bio';

@@ -1,7 +1,6 @@
 import React from 'react';
 import{ NavLink } from 'react-router-dom';
 import styles from './Menu.module.scss';
-import facebook from '../../assets/images/social/facebook.svg';
 import instagram from '../../assets/images/social/instagram.svg';
 import { LanguageContext } from '../../contexts/LanguageContext';
 
@@ -19,7 +18,7 @@ const Menu = ({openClose, items}) =>(
                     <li onClick={openClose} className={styles.navItem}><NavLink className={styles.navItemLink} activeClassName={styles.navItemLinkActive} to="/kontakt">Kontakt</NavLink></li>
                 </ul>
                 <div className={styles.socialIcons}>
-                    <a target='_blank' href='https://www.instagram.com/szymekarpinski/'><img src={instagram}></img></a>
+                    <a target='_blank' rel='noopener noreferrer' href='https://www.instagram.com/szymekarpinski/'><img src={instagram} alt="Instagram" /></a>
                 </div>
                 
                 <div className={styles.language}>

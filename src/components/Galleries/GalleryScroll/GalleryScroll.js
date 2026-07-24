@@ -17,7 +17,7 @@ return(
             slide.photo ? (<Slide key={i} image={slide.photo.url} />
                
                 ) : (
-                <p className={styles.description}>{slide.descriptionPl.raw.children[0].children.map((x, j) => (x.italic && x.bold ? <i key={j}><b>{x.text}</b></i> : (x.bold ? <b key={j}>{x.text}</b> : (x.italic ? <i key={j}>{x.text}</i> : x.text.replace(/ ([a-zA-Z]) /g, ' $1' + '\u00A0')))))}</p>
+                <p className={styles.description}>{slide.descriptionPl.raw.children[0].children.map((x, j) => (x.italic && x.bold ? <i key={j}><b>{x.text}</b></i> : (x.bold ? <b key={j}>{x.text}</b> : (x.italic ? <i key={j}>{x.text}</i> : x.text.replace(/ ([a-zA-Z]) /g, ' $1\u00A0')))))}</p>
                 )
             
             

@@ -66,8 +66,8 @@ const Teksty = () =>{
                         {/* POTENCJALNY ENTER {tekst.wpis.raw.children.map((a,b) => <p key={b}>{a.children.map((x, j) => (x.italic && x.bold ? <i key={j}><b>{x.text}</b></i> : (x.bold ? <b key={j}>{x.text}</b> : (x.italic ? <i key={j}>{x.text}</i> : x.text))))}</p>)}*/}
                         {isPL ? (tekst.wpis.raw.children[0].children.map((x, j) => (x.italic && x.bold ? <i key={j}><b>{x.text}</b></i> : (x.bold ? <b key={j}>{x.text}</b> : (x.italic ? <i key={j}>{x.text}</i> : x.text))))) : 
                         (tekst.wpisEn && tekst.wpisEn.raw.children[0].children.map((x, j) => (x.italic && x.bold ? <i key={j}><b>{x.text}</b></i> : (x.bold ? <b key={j}>{x.text}</b> : (x.italic ? <i key={j}>{x.text}</i> : x.text)))))}
-                        {tekst.link && <a href={tekst.link} target='_blank'><img className={styles.img} alt='link icon' src={linkImg}></img></a>}
-                        {tekst.pdf && <a href={tekst.pdf.url} target='_blank' download><img className={styles.img} alt='pdf icon' src={pdfImg}></img></a>}
+                        {tekst.link && <a href={tekst.link} target='_blank' rel='noopener noreferrer'><img className={styles.img} alt='link icon' src={linkImg}></img></a>}
+                        {tekst.pdf && <a href={tekst.pdf.url} target='_blank' rel='noopener noreferrer' download><img className={styles.img} alt='pdf icon' src={pdfImg}></img></a>}
                     </div>
                 </div>
             ))}

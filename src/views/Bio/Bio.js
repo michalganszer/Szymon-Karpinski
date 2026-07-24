@@ -59,7 +59,7 @@ const Bio = () =>{
                 ) : (
                 <>
                 <div className={styles.download}>
-                    {isPL ? 'Pobierz bio' : 'Download bio'} <a target='_blank' href={bios[0].bioDownload.url}><img src={PDF}/></a>
+                    {isPL ? 'Pobierz bio' : 'Download bio'} <a target='_blank' rel='noopener noreferrer' href={bios[0].bioDownload.url}><img src={PDF} alt="PDF" /></a>
                 </div> 
 
                 <div className={styles.wrapper}>

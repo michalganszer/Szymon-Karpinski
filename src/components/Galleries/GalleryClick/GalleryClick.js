@@ -3,7 +3,6 @@ import AliceCarousel from 'react-alice-carousel';
 import prev from './../../../assets/images/icons/prev.png';
 import next from './../../../assets/images/icons/next.png';
 import './GalleryClick.scss';
-import Info from '../Info/Info';
 import {Helmet} from "react-helmet";
 import { LanguageContext } from '../../../contexts/LanguageContext';
 import RichText from '../../RichText/RichText';

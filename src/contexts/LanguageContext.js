@@ -1,4 +1,4 @@
-import React, { createContext, Component, Children} from 'react';
+import React, { createContext, Component } from 'react';
 
 export const LanguageContext = createContext();
 
