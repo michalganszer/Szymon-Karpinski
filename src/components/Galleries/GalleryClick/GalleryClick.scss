@@ -49,11 +49,10 @@
         right: 0;
         transform: translateY(-50%);
         margin: 0 auto;
-        width: calc(72% - 156px);
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
         text-align: justify;
-        max-width:450px;
-        
-        
     }
     &buttonWrapper{
         text-align: right;
@@ -129,7 +128,8 @@
         }
         &text{
             font-size:1.2vw;
-            width:calc(90% - 156px);
+            width: 100%;
+            padding: 0 10%;
         }
          &prev-btn-custom{
             left:36px;
@@ -145,7 +145,8 @@
     .alice-carousel__{
     &text{
         font-size: inherit;
-        width: calc(75% - 156px);
+        width: 100%;
+        padding: 0 15%;
     }
     }
 }
