@@ -3,15 +3,19 @@ import { request } from 'graphql-request';
 import styles from './Kontakt.module.scss';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { Helmet } from 'react-helmet';
+import RichText from '../../components/RichText/RichText';
 
 const GRAPHCMS_ENDPOINT = 'https://api-eu-central-1.graphcms.com/v2/ckest21fh481r01z5a1lp8trn/master';
 
 const QUERY = `
   {
     kontakts {
-      location
-      email
-      phone
+      content {
+        raw
+      }
+      contentEn {
+        raw
+      }
     }
   }
 `;
@@ -38,9 +42,9 @@ const Kontakt = () => {
     <LanguageContext.Consumer>
       {(context) => {
         const { isPL } = context;
-        const location = kontaktData?.location || (isPL ? 'Bielsko-Biała, Polska' : 'Bielsko-Biała, Poland');
-        const email = kontaktData?.email || 'karpinski_szymon(at)wp.pl';
-        const phone = kontaktData?.phone || '(+48) 514-942-473';
+        const activeContent = isPL
+          ? (kontaktData?.content || kontaktData?.contentEn)
+          : (kontaktData?.contentEn || kontaktData?.content);
 
         return (
           <>
@@ -49,9 +53,15 @@ const Kontakt = () => {
             </Helmet>
 
             <div className={styles.kontakt}>
-              <div>{location}</div>
-              <div>{email}</div>
-              <a href={`tel:${phone.replace(/[\s()-]/g, '')}`}>{phone}</a>
+              {activeContent ? (
+                <RichText iteraction={activeContent} />
+              ) : (
+                <>
+                  <div>{isPL ? 'Bielsko-Biała, Polska' : 'Bielsko-Biała, Poland'}</div>
+                  <div>karpinski_szymon(at)wp.pl</div>
+                  <a href="tel:+48514942473">(+48) 514-942-473</a>
+                </>
+              )}
               <p>© {new Date().getFullYear()} Szymon Karpiński</p>
             </div>
           </>
