@@ -10,10 +10,7 @@ const GRAPHCMS_ENDPOINT = 'https://api-eu-central-1.graphcms.com/v2/ckest21fh481
 const QUERY = `
   {
     kontakts {
-      content {
-        raw
-      }
-      contentEn {
+      contact {
         raw
       }
     }
@@ -42,14 +39,13 @@ const Kontakt = () => {
     <LanguageContext.Consumer>
       {(context) => {
         const { isPL } = context;
-        const activeContent = isPL
-          ? (kontaktData?.content || kontaktData?.contentEn)
-          : (kontaktData?.contentEn || kontaktData?.content);
+        const activeContent = kontaktData?.contact;
 
         return (
           <>
             <Helmet>
-              <title>Kontakt</title>
+              <title>{isPL ? 'Kontakt - fotografia, Szymon Karpiński, Bielsko-Biała' : 'Contakt - Szymon Karpiński'}</title>
+              <meta name="description" content='Zapraszam do kontaktu'/>
             </Helmet>
 
             <div className={styles.kontakt}>

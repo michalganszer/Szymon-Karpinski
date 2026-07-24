@@ -12,18 +12,7 @@ html{
 }
 body {
   margin: $margin;
-  //font-family: 'Montserrat', sans-serif;
-  //font-family: 'Asap', sans-serif;
-  //font-family: 'Assistant', sans-serif;
-  font-family: 'IBM Plex Sans', sans-serif;
-  //font-family: 'Nunito', sans-serif;
-  //font-family: 'Sarabun', sans-serif;
-  font-family: 'Alegreya';
-  font-family: 'Sorts Mill Goudy';
-  font-family: 'Gentium Book Basic';
-  font-family: 'Old Standard TT';
-  font-family: 'Mill Goudy';
-  
+  font-family: 'Sorts Mill Goudy', serif;
   font-weight: 200;
   min-height: calc(100vh - (2 * #{$margin}));
   overflow-x: hidden;
@@ -35,7 +24,7 @@ body {
   line-height: 1.3em;
 }
 button{
-  font-family: 'Mill Goudy';
+  font-family: 'Sorts Mill Goudy', serif;
   font-weight:200;
   font-size: 13px;
 }

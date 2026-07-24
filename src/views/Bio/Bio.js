@@ -1,8 +1,6 @@
-
 import React, { useEffect, useState} from 'react';
 import { request } from 'graphql-request';
 import styles from './Bio.module.scss';
-import PDF from '../../assets/images/icons/pdf.svg'
 import { LanguageContext } from '../../contexts/LanguageContext';
 import {Helmet} from "react-helmet";
 import RichText from '../../components/RichText/RichText';
@@ -18,6 +16,8 @@ const Bio = () =>{
             `
             {
                 bios {
+                    seoTitle
+                    seoDescription
                     wpisy {
                         dzial
                         dzialEn
@@ -48,9 +48,7 @@ const Bio = () =>{
         const {isPL} = context;
         return(
         <>
-            <Helmet>
-                <title>Szymon Karpiński - Bio</title>
-            </Helmet>
+            
         
             
            
@@ -58,8 +56,12 @@ const Bio = () =>{
                 ''
                 ) : (
                 <>
+                <Helmet>
+                    <title>{bios[0].seoTitle}</title>
+                    <meta name="description" content={bios[0].seoDescription}/>
+                </Helmet>
                 <div className={styles.download}>
-                    {isPL ? 'Pobierz bio' : 'Download bio'} <a target='_blank' rel='noopener noreferrer' href={bios[0].bioDownload.url}><img src={PDF} alt="PDF" /></a>
+                     <a className={styles.link} target='_blank' rel='noopener noreferrer' href={bios[0].bioDownload.url}>{isPL ? 'Pobierz bio' : 'Download bio'}</a>
                 </div> 
 
                 <div className={styles.wrapper}>

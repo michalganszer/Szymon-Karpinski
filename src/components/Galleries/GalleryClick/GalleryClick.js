@@ -12,7 +12,7 @@ import RichText from '../../RichText/RichText';
 
 
 
-const Slider = ({photos}) => {
+const Slider = ({photos, seo}) => {
 
   const [index, setIndex] = useState(0);
   //const [slides, setSlides] = useState([photos.description, ...photos.photo])//merge photos and description
@@ -65,7 +65,8 @@ const Slider = ({photos}) => {
       
           <Helmet>
           {console.log(context.isPL)}
-            <title>{photos.name}</title>
+            <title>{seo.seoTitle}</title>
+            <meta name="description" content={seo.seoDescription}/>
           </Helmet>
         <div onTouchMove={offOverflow} onTouchEnd={onOverflow} className="alice-carousel-custom-wrapper">
 

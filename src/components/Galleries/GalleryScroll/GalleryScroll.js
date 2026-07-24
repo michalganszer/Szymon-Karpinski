@@ -4,12 +4,13 @@ import Slide from '../Slide/Slide';
 import {Helmet} from "react-helmet";
 
 
-const GalleryScroll = ({slides}) =>{
+const GalleryScroll = ({slides, seo}) =>{
         
 return(
 <div className={styles.wrapper}>
     <Helmet>
-        <title>{slides.name}</title>
+        <title>{seo.seoTitle}</title>
+        <meta name="description" content={seo.seoDescription}/>
     </Helmet>
 
     <div className={styles.galleryScroll}>

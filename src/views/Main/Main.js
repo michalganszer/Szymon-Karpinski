@@ -34,7 +34,8 @@ const Main = () =>{
       return(
     <>
     <Helmet>
-        <title>Szymon Karpiński</title>
+        <title>Szymon Karpiński - fotografia dokumentalna, projekty badawcze i artystyczne</title>
+        <meta name="description" content='Artysta i badacz zainteresowany relacjami między człowieka i środowiskiem naturalnym.'/>
     </Helmet>
     <div className={styles.main}>
         {!stronaGlownas ? <div className={styles.ripple}></div> :
