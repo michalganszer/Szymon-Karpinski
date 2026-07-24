@@ -9,6 +9,7 @@ const GRAPHCMS_ENDPOINT = 'https://api-eu-central-1.graphcms.com/v2/ckest21fh481
 const QUERY = `
   {
     kontakts {
+      location
       email
       phone
     }
@@ -37,7 +38,8 @@ const Kontakt = () => {
     <LanguageContext.Consumer>
       {(context) => {
         const { isPL } = context;
-        const email = kontaktData?.email || 'karpinski_szymon@wp.pl';
+        const location = kontaktData?.location || (isPL ? 'Bielsko-Biała, Polska' : 'Bielsko-Biała, Poland');
+        const email = kontaktData?.email || 'karpinski_szymon(at)wp.pl';
         const phone = kontaktData?.phone || '(+48) 514-942-473';
 
         return (
@@ -47,19 +49,10 @@ const Kontakt = () => {
             </Helmet>
 
             <div className={styles.kontakt}>
-              {isPL ? (
-                <>
-                  <div>{email}</div>
-                  <a href={`tel:${phone.replace(/[\s()-]/g, '')}`}>{phone}</a>
-                  <p>© {new Date().getFullYear()} Szymon Karpiński</p>
-                </>
-              ) : (
-                <>
-                  <div>{email}</div>
-                  <a href={`tel:${phone.replace(/[\s()-]/g, '')}`}>{phone}</a>
-                  <p>© {new Date().getFullYear()} Szymon Karpiński</p>
-                </>
-              )}
+              <div>{location}</div>
+              <div>{email}</div>
+              <a href={`tel:${phone.replace(/[\s()-]/g, '')}`}>{phone}</a>
+              <p>© {new Date().getFullYear()} Szymon Karpiński</p>
             </div>
           </>
         );
